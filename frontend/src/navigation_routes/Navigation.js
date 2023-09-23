@@ -1,31 +1,84 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import "./Navigation.css";
-import { NavLink } from "react-router-dom";
-import { Navbar, Nav, NavItem, NavbarBrand } from "reactstrap";
+import UserContext from "../auth/UserContext";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 
-function NavBar(user = "") {
-  // const history = useHistory();
+function Navigation({ logout }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const { currUser } = useContext(UserContext);
 
-  // Removes user token and returns to homepage
-  // async function logout() {
-  //   history.push("/");
-  // }
+  function toggle() {
+    setIsOpen(!isOpen);
+  }
+
+  function isLoggedIn() {
+    return (
+      <>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink href="/companies">Companies</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/jobs">Jobs</NavLink>
+            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                {currUser.username}
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem tag="a" href={`/users/${currUser.userName}`}>
+                  Profile
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem onCLick={logout}>logout</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+        </Collapse>
+      </>
+    );
+  }
+
+  function isLoggedOut() {
+    return (
+      <>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink href="/login">Login</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/signup">SignUp</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </>
+    );
+  }
 
   return (
-    <div>
-      <Navbar expand="md">
-        <NavbarBrand href="/">💼 Jobly</NavbarBrand>
-        <Nav>
-          <NavItem>
-            <NavLink to="/companies">Companies</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/jobs">Jobs</NavLink>
-          </NavItem>
-        </Nav>
+    <div className="Navigation">
+      <Navbar color="light" light expand="md">
+        <NavbarBrand href="/">Jobly</NavbarBrand>
+        {currUser ? isLoggedIn() : isLoggedOut()}
       </Navbar>
     </div>
   );
 }
 
-export default NavBar;
+export default Navigation;

@@ -26,6 +26,14 @@ function App() {
   const [currUser, setCurrUser] = useState(null);
   const [applicationIds, setApplicationIds] = useState(new Set([]));
 
+  console.debug(
+    "App. Loading user data.",
+    "currUser: ",
+    currUser,
+    "token: ",
+    token
+  );
+
   /** Updates if token changes.
    *  - dataIsLoading => { true } while awaiting data
    *  - Retrieves user data from token and pulls from JoblyApi
