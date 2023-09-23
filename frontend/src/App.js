@@ -1,11 +1,12 @@
-import React, { useState, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import { useLocalStorage } from "./hooks";
-import jwt from "jsonwebtoken";
+import useLocalStorage from "./hooks/useLocalStorage";
 import JoblyApi from "./api/api";
+import { decodeToken } from "react-jwt";
 import UserContext from "./auth/UserContext";
 import Loading from "./common/Loading";
 import Navigation from "./navigation_routes/Navigation";
+import Routes from "./navigation_routes/Routes";
 
 /** Jobly Application
  *
@@ -45,7 +46,8 @@ function App() {
       async function getCurrUser() {
         if (token) {
           try {
-            const { username } = jwt.decode(token);
+            console.log("TOKEN: ", token);
+            const { username } = decodeToken(token);
             // Set api token
             JoblyApi.token = token;
             const user = await JoblyApi.getCurrUser(username);
@@ -85,9 +87,9 @@ function App() {
       const token = await JoblyApi.login(data);
       setToken(token);
       return { success: true };
-    } catch (error) {
-      console.error("Error with login. Invalid username or password.", error);
-      return { success: false };
+    } catch (errors) {
+      console.error("Error with login. Invalid username or password.", errors);
+      return { success: false, errors };
     }
   }
 
@@ -97,9 +99,9 @@ function App() {
       const token = await JoblyApi.signup(data);
       setToken(token);
       return { success: true };
-    } catch (error) {
-      console.error("Error with signup.", error);
-      return { success: false };
+    } catch (errors) {
+      console.error("Error with signup.", errors);
+      return { success: false, errors };
     }
   }
 
@@ -115,7 +117,9 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ currUser, hasApplied, applyToJob }}>
+    <UserContext.Provider
+      value={{ currUser, setCurrUser, hasApplied, applyToJob }}
+    >
       <Navigation logout={logout} />
       <Routes login={login} signup={signup} />
     </UserContext.Provider>

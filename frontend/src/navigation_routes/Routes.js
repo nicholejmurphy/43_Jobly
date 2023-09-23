@@ -4,7 +4,7 @@ import PrivateRoute from "./PrivateRoute";
 import Homepage from "../homepage/Homepage";
 import CompanyList from "../companies/CompanyList";
 import CompanyDetails from "../companies/CompanyDetails";
-import JobList from "../jobs/JobList";
+import JobsList from "../jobs/JobsList";
 import ProfileForm from "../profiles/ProfileForm";
 import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
@@ -30,7 +30,7 @@ function Routes({ login, signup }) {
           <CompanyDetails />
         </PrivateRoute>
         <PrivateRoute path="/jobs">
-          <JobList />
+          <JobsList />
         </PrivateRoute>
         <PrivateRoute path="/users/:username">
           <ProfileForm />
