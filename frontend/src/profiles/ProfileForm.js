@@ -4,6 +4,11 @@ import Alert from "../common/Alert";
 import UserContext from "../auth/UserContext";
 import JoblyApi from "../api/api";
 
+/** Handles user profile information update
+ *  - Pulls user data from currUser state to populate form.
+ *  - Requires password input to verify submission
+ *  - Updates user info across site state.
+ */
 function ProfileForm() {
   const { currUser, setCurrUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
