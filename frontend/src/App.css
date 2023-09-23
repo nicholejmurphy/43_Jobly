@@ -6,7 +6,6 @@ main {
   padding-top: 15vh;
   height: calc(100vh - 56px); /* router view - navbar height */
   overflow: scroll;
-  color: white;
 }
 
 .card {

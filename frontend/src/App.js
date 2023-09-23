@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./static/App.css";
-import Loading from "./Loading";
-import JoblyApi from "./api";
+import { useLocalStorage } from "./hooks";
 import NavBar from "./NavBar";
-import { Route, Switch } from "react-router-dom";
+import Routes from "./Routes";
+import UserContext from "./UserContext";
 
-function App() {}
+function App() {
+  // Runs GET request for items from JSON-server with first render
+  const user = useLocalStorage("user");
+
+  return (
+    <UserContext.Provider value={user}>
+      <NavBar />
+      <Routes />
+    </UserContext.Provider>
+  );
+}
 
 export default App;
