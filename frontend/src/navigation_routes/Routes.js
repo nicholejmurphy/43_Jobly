@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./Routes.css";
-import UserContext from "../auth/UserContext";
 import PrivateRoute from "./PrivateRoute";
 import Homepage from "../homepage/Homepage";
 import CompanyList from "../companies/CompanyList";
