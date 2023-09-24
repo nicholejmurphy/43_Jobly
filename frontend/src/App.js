@@ -46,13 +46,12 @@ function App() {
       async function getCurrUser() {
         if (token) {
           try {
-            console.log("TOKEN: ", token);
             const { username } = decodeToken(token);
             // Set api token
             JoblyApi.token = token;
             const user = await JoblyApi.getCurrUser(username);
             setCurrUser(user);
-            setApplicationIds(new Set(currUser.applications));
+            setApplicationIds(new Set(user.applications));
           } catch (error) {
             console.error("Failed to set current user.", error);
             setCurrUser(null);
@@ -77,7 +76,7 @@ function App() {
   // - Add jobId to applicationIds set
   async function applyToJob(id) {
     if (hasApplied(id)) return;
-    JoblyApi.apply(currUser.username, id);
+    JoblyApi.applyToJob(currUser.username, id);
     setApplicationIds(new Set([...applicationIds, id]));
   }
 
@@ -111,17 +110,19 @@ function App() {
     setToken(null);
   }
 
-  // Soow loading component if data is still loading.
+  // Show loading component if data is still loading.
   if (dataIsLoading) {
     return <Loading />;
   }
 
   return (
     <UserContext.Provider
-      value={{ currUser, setCurrUser, hasApplied, applyToJob }}
+      value={{ currUser, setCurrUser, hasApplied, applyToJob, applicationIds }}
     >
       <Navigation logout={logout} />
-      <Routes login={login} signup={signup} />
+      <div className="App">
+        <Routes login={login} signup={signup} />
+      </div>
     </UserContext.Provider>
   );
 }

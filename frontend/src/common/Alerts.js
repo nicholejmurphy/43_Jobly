@@ -1,18 +1,21 @@
 import React from "react";
+import { Alert } from "reactstrap";
 
 /** Alert Component shows error messages from a variety of components.
  *  - renders with "type" { success, danger, warning }
  *    which controls the color of alert
  *  - errors maps through to show each error message
  */
-function Alert({ type, errors }) {
+function Alerts({ type, messages }) {
   return (
     <div>
-      {errors.map((e) => (
-        <p className={type}>e</p>
+      {messages.map((message) => (
+        <Alert color={type} key={message}>
+          {message}
+        </Alert>
       ))}
     </div>
   );
 }
 
-export default Alert;
+export default Alerts;

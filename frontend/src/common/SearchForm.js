@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Input, Button } from "reactstrap";
-import Alert from "../common/Alert";
+import { Form, Row, Col, Input, Button } from "reactstrap";
 
 /** Search input for { CompanyList & JobsList }
  *  - api call is passed into form via "searchFor"
@@ -9,7 +8,7 @@ import Alert from "../common/Alert";
  *    only just triggered here
  *
  */
-function SearchForm({ searchFor }) {
+function SearchForm({ search }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   // Updates serchterm state on form input change
@@ -17,32 +16,36 @@ function SearchForm({ searchFor }) {
     setSearchTerm(e.target.value);
   }
 
-  // On submit, serachFor() is triggered, passing
+  // On submit, serach() is triggered, passing
   // the search term back to parent.
   //  - Trimming extra spaces to keep from passing
   //    those as part of the filtering term
   async function handleSubmit(e) {
-    e.preventDefalut();
-    searchFor(searchTerm.trim() || undefined);
+    e.preventDefault();
+    search(searchTerm.trim() || undefined);
     setSearchTerm(searchTerm.trim());
   }
 
   return (
-    <div className="SearchForm">
+    <div className="SearchForm mb-4 mt-4 ml-3 vw-100">
       <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Input
-            id="search"
-            name="search"
-            type="text"
-            placeholder="Enter search term..."
-            value={searchTerm}
-            onChange={handleChange}
-          />
-        </FormGroup>
-        <Button>Search</Button>
+        <Row>
+          <Col>
+            <Input
+              id="search"
+              name="search"
+              type="text"
+              placeholder="Enter search term..."
+              value={searchTerm}
+              onChange={handleChange}
+            />
+          </Col>
+          <Col>
+            {" "}
+            <Button className="bg-warning">Search</Button>
+          </Col>
+        </Row>
       </Form>
-      {formErrors.length ? <Alert type="danger" errors={formErrors} /> : null}
     </div>
   );
 }

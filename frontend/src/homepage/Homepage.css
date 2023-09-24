@@ -1,0 +1,27 @@
+.Homepage {
+  text-align: center;
+  align-items: center;
+}
+
+.Homepage-card {
+  height: 50vh;
+  padding-top: 10%;
+}
+
+.Homepage hr {
+  width: 50vw;
+}
+
+.Homepage-subtitle {
+  font-size: 1rem;
+}
+
+.Homepage-welcome {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.Homepage-btns a {
+  margin: 0.25rem;
+  font-size: 1.25rem;
+}

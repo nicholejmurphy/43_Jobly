@@ -40,11 +40,17 @@ function Navigation({ logout }) {
                 {currUser.username}
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem tag="a" href={`/users/${currUser.userName}`}>
+                <DropdownItem tag="a" href="/applications">
+                  Applications{" "}
+                  <span className="badge badge-success">
+                    {currUser.applications.length}
+                  </span>
+                </DropdownItem>
+                <DropdownItem tag="a" href="/profile">
                   Profile
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem onCLick={logout}>logout</DropdownItem>
+                <DropdownItem onClick={logout}>logout</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Form, FormGroup, Label, Input, Button, FormText } from "reactstrap";
-import Alert from "../common/Alert";
+import Alerts from "../common/Alerts";
 import UserContext from "../auth/UserContext";
 import JoblyApi from "../api/api";
 
@@ -12,12 +12,14 @@ import JoblyApi from "../api/api";
 function ProfileForm() {
   const { currUser, setCurrUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
+    username: currUser.username,
     firstName: currUser.firstName,
     lastName: currUser.lastName,
     email: currUser.email,
     password: "",
   });
   const [formErrors, setFormErrors] = useState([]);
+  const [updateConfirmed, setUpdateConfirmed] = useState(false);
 
   /** Handle form input changes
    *  - update formData state to catch all form changes
@@ -42,31 +44,47 @@ function ProfileForm() {
    *
    */
   async function handleSubmit(e) {
-    e.preventDefalut();
-    const username = currUser.username;
+    e.preventDefault();
+    const profileData = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      password: formData.password,
+    };
+    const username = formData.username;
     let updatedUser;
 
     try {
-      updatedUser = await JoblyApi.updateProfile(username, formData);
+      updatedUser = await JoblyApi.updateProfile(username, profileData);
     } catch (errors) {
-      setFormErrors(updatedUser.errors);
+      setFormErrors(errors);
       return;
     }
     setCurrUser(updatedUser);
+    setUpdateConfirmed(true);
     setFormData((data) => ({ ...data, password: "" }));
     setFormErrors([]);
   }
 
   return (
-    <div className="ProfileForm">
+    <div className="ProfileForm bg-light p-4 w-100 shadow rounded">
+      {updateConfirmed ? (
+        <Alerts
+          type="success"
+          messages={["Profile has been successfully updated!"]}
+        />
+      ) : null}
+      {formErrors ? <Alerts type="danger" messages={formErrors} /> : null}
       <Form onSubmit={handleSubmit}>
-        <FormGroup disabled>
+        <h2>Update Profile</h2>
+        <FormGroup>
           <Label for="username">Username</Label>
           <Input
             id="username"
             name="username"
             type="text"
-            value={currUser.username}
+            value={formData.username}
+            disabled
           />
         </FormGroup>
         <FormGroup>
@@ -99,7 +117,7 @@ function ProfileForm() {
             onChange={handleChange}
           />
         </FormGroup>
-        <FormText>Please confirm your password to make changes.</FormText>
+        <hr />
         <FormGroup>
           <Label for="password">Password</Label>
           <Input
@@ -109,10 +127,10 @@ function ProfileForm() {
             value={formData.password}
             onChange={handleChange}
           />
+          <FormText>Please confirm your password to make changes.</FormText>
         </FormGroup>
-        <Button>Update</Button>
+        <Button className="bg-primary">Update</Button>
       </Form>
-      {formErrors ? <Alert type="Sign Up" errors={formErrors} /> : null}
     </div>
   );
 }

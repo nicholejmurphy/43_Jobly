@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import Alert from "../common/Alert";
+import Alerts from "../common/Alerts";
 
 /** Handles user login attemps.
  *  - Takes in form data and attempts to authenticate
@@ -29,16 +29,22 @@ function LoginForm({ login }) {
   // If successful, redirects to homepage
   // if invalid attempt, error messages will be updated
   async function handleSubmit(e) {
-    e.preventDefalut();
+    e.preventDefault();
     const res = await login(formData);
     if (res.success) {
       history.push("/");
+    } else {
+      setFormErrors(res.errors);
     }
-    setFormErrors(res.errors);
   }
   return (
-    <div className="LoginForm">
+    <div className="LoginForm bg-light p-4 w-100 shadow rounded">
+      {formErrors.length ? (
+        <Alerts type="danger" messages={formErrors} />
+      ) : null}
+
       <Form onSubmit={handleSubmit}>
+        <h2>Login</h2>
         <FormGroup>
           <Label for="username">Username</Label>
           <Input
@@ -61,9 +67,8 @@ function LoginForm({ login }) {
             onChange={handleChange}
           />
         </FormGroup>
-        <Button>Login</Button>
+        <Button className="bg-primary">Login</Button>
       </Form>
-      {formErrors.length ? <Alert type="danger" errors={formErrors} /> : null}
     </div>
   );
 }

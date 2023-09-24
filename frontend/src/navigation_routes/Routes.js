@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
+import "./Routes.css";
+import UserContext from "../auth/UserContext";
 import PrivateRoute from "./PrivateRoute";
 import Homepage from "../homepage/Homepage";
 import CompanyList from "../companies/CompanyList";
 import CompanyDetails from "../companies/CompanyDetails";
-import JobsList from "../jobs/JobsList";
+import JobList from "../jobs/JobList";
 import ProfileForm from "../profiles/ProfileForm";
+import Applications from "../profiles/Applications";
 import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
 import NotFound from "../common/NotFound";
 
 function Routes({ login, signup }) {
   return (
-    <div>
+    <div className="Routes rounded shadow">
       <Switch>
         <Route exact path="/">
           <Homepage />
@@ -26,14 +29,17 @@ function Routes({ login, signup }) {
         <PrivateRoute exact path="/companies">
           <CompanyList />
         </PrivateRoute>
-        <PrivateRoute path="/companies/:company">
+        <PrivateRoute path="/companies/:handle">
           <CompanyDetails />
         </PrivateRoute>
         <PrivateRoute path="/jobs">
-          <JobsList />
+          <JobList />
         </PrivateRoute>
-        <PrivateRoute path="/users/:username">
+        <PrivateRoute path="/profile">
           <ProfileForm />
+        </PrivateRoute>
+        <PrivateRoute path="/applications">
+          <Applications />
         </PrivateRoute>
         <Route path="*">
           <NotFound />

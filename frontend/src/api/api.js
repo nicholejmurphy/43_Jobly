@@ -58,6 +58,13 @@ class JoblyApi {
 
   /** Get list of jobs and filter by title if not undefined. */
 
+  static async getJob(id) {
+    let res = await this.request(`jobs/${id}`);
+    return res.job;
+  }
+
+  /** Get list of jobs and filter by title if not undefined. */
+
   static async getJobs(title) {
     let res = await this.request(`jobs`, { title });
     return res.jobs;
@@ -87,8 +94,8 @@ class JoblyApi {
    * { firstName, lastName, password, email } =>
    * { username, firstName, lastName, email, isAdmin }. */
 
-  static async updateProfile(data) {
-    let res = await this.request(`auth/register`, data, "post");
+  static async updateProfile(username, data) {
+    let res = await this.request(`users/${username}`, data, "patch");
     return res.user;
   }
 }
