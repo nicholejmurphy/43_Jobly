@@ -7,7 +7,6 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
  * Static class tying together methods used to get/send to to the API.
  *
  */
-
 class JoblyApi {
   // the token for interacting with the API will be stored here.
   static token;
