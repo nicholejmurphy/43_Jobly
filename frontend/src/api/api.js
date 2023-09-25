@@ -12,7 +12,7 @@ class JoblyApi {
   static token;
 
   static async request(endpoint, data = {}, method = "get") {
-    console.debug("API Call:", endpoint, data, method);
+    // console.debug("API Call:", endpoint, data, method);
 
     // passing authorization token through the header
     const url = `${BASE_URL}/${endpoint}`;

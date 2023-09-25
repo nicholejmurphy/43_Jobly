@@ -15,7 +15,7 @@ function CompanyCard({ handle, name, numEmployees, description, logoUrl }) {
       <p className="lead">{description}</p>
       <p>
         Number of employees:{" "}
-        <span class="badge badge-info">{numEmployees}</span>
+        <span className="badge badge-info">{numEmployees}</span>
       </p>
     </div>
   );

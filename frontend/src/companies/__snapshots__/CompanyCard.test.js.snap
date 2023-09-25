@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="CompanyCard bg-light rounded shadow p-3 m-3"
+  >
+    <a
+      href="/companies/undefined"
+    >
+      <h2 />
+    </a>
+    <hr
+      class="w-25 ml-0"
+    />
+    <p
+      class="lead"
+    />
+    <p>
+      Number of employees: 
+      <span
+        class="badge badge-info"
+      />
+    </p>
+  </div>
+</DocumentFragment>
+`;
