@@ -3,8 +3,8 @@ import "./Loading.css";
 
 function Loading() {
   return (
-    <div className="Loading rounded shadow">
-      <p className="h2">
+    <div className="Loading">
+      <p className="display-3">
         <span
           className="Loading-spinner spinner-grow spinner-grow-sm"
           role="status"

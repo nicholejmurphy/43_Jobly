@@ -22,7 +22,7 @@ function CompanyList() {
     setCompanies(companies);
   }
 
-  if (!companies) return <Loading />;
+  if (!companies) return;
 
   return (
     <div className="CompanyList">

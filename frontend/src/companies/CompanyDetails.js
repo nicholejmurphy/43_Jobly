@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import JoblyApi from "../api/api";
-import Loading from "../common/Loading";
 import JobCardList from "../jobs/JobCardList";
 
 /** Shows a list of all jobs for a company.
@@ -25,7 +24,7 @@ function CompanyDetails() {
     getCompanyOnMount();
   }, [handle]);
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return;
 
   return (
     <div className="CompanyDetails">

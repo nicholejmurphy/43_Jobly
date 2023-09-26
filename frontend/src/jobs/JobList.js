@@ -25,7 +25,7 @@ function JobList() {
     setJobs(jobsRes);
   }
 
-  if (!jobs) return <Loading />;
+  if (!jobs) return;
 
   return (
     <div className="JobList">

@@ -24,7 +24,7 @@ function Applications() {
     getJobsOnMount();
   }, []);
 
-  if (!jobs) return <Loading />;
+  if (!jobs) return;
 
   return (
     <div className="Applications">
