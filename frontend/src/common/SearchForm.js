@@ -32,6 +32,7 @@ function SearchForm({ search }) {
         <Row>
           <Col>
             <Input
+              className="shadow"
               id="search"
               name="search"
               type="text"
@@ -42,7 +43,7 @@ function SearchForm({ search }) {
           </Col>
           <Col>
             {" "}
-            <Button className="bg-warning">Search</Button>
+            <Button className="bg-info shadow">Search</Button>
           </Col>
         </Row>
       </Form>

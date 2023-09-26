@@ -24,7 +24,7 @@ function CompanyList() {
   if (!companies) return <></>;
 
   return (
-    <div className="CompanyList">
+    <div className="CompanyList container rounded shadow">
       <div className="bg-dark p-3 m-3 rounded shadow">
         <h2 className="text-light display-4">Companies</h2>
       </div>
@@ -43,7 +43,9 @@ function CompanyList() {
           ))}
         </div>
       ) : (
-        <p className="text-light h1">Sorry, no results were found.</p>
+        <p className="text-dark ml-3 h1">
+          Sorry, no companies were found by that name.
+        </p>
       )}
     </div>
   );

@@ -27,7 +27,7 @@ function JobList() {
   if (!jobs) return <></>;
 
   return (
-    <div className="JobList">
+    <div className="JobList container rounded shadow">
       <div className="bg-dark p-3 m-3 rounded shadow">
         <h2 className="text-light display-4">Job Listings</h2>
       </div>
@@ -36,7 +36,7 @@ function JobList() {
       {jobs.length ? (
         <JobCardList jobs={jobs} />
       ) : (
-        <p className="text-light h1">
+        <p className="text-dark ml-3 h1">
           Sorry, no jobs were found with that title.
         </p>
       )}

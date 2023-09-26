@@ -26,7 +26,7 @@ function Applications() {
   if (!jobs) return <></>;
 
   return (
-    <div className="Applications">
+    <div className="Applications  container rounded shadow">
       <div className="bg-dark p-3 m-3 rounded shadow">
         <h2 className="text-light display-4">Your active job applications</h2>
       </div>

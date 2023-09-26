@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import "./SignupForm.css";
 import Alerts from "../common/Alerts";
 
 /** Handles user signup attemps.

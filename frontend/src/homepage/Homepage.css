@@ -1,15 +1,17 @@
 .Homepage {
   text-align: center;
-  align-items: center;
+  padding: 3rem;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
 }
 
 .Homepage-card {
-  height: 50vh;
   padding-top: 10%;
 }
 
 .Homepage hr {
-  width: 50vw;
+  width: 25vw;
 }
 
 .Homepage-subtitle {
@@ -17,11 +19,10 @@
 }
 
 .Homepage-welcome {
-  margin-top: 2rem;
-  margin-bottom: 3rem;
+  margin: 2rem;
 }
 
 .Homepage-btns a {
-  margin: 0.25rem;
+  margin: 0.5rem;
   font-size: 1.25rem;
 }

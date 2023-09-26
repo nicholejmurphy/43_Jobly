@@ -27,7 +27,7 @@ function CompanyDetails() {
   if (isLoading) return <></>;
 
   return (
-    <div className="CompanyDetails">
+    <div className="CompanyDetails  container rounded shadow">
       <div className="bg-dark p-3 m-3 rounded shadow">
         <h5 className="text-light">Job Listings for:</h5>
         <h1 className="text-light">{company.name}</h1>
