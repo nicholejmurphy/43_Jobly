@@ -24,7 +24,7 @@ function CompanyDetails() {
     getCompanyOnMount();
   }, [handle]);
 
-  if (isLoading) return <div></div>;
+  if (isLoading) return <></>;
 
   return (
     <div className="CompanyDetails">

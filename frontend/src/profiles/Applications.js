@@ -23,7 +23,7 @@ function Applications() {
     getJobsOnMount();
   }, [applicationIds]);
 
-  if (!jobs) return <div></div>;
+  if (!jobs) return <></>;
 
   return (
     <div className="Applications">

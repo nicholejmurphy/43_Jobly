@@ -21,7 +21,7 @@ function CompanyList() {
     setCompanies(companies);
   }
 
-  if (!companies) return <div></div>;
+  if (!companies) return <></>;
 
   return (
     <div className="CompanyList">
