@@ -4,13 +4,29 @@ import "./Loading.css";
 function Loading() {
   return (
     <div className="Loading">
-      <p className="display-3">
+      <p>
         <span
-          className="Loading-spinner spinner-grow spinner-grow-sm"
+          className="Loading-spinner spinner-grow spinner-grow-lg"
           role="status"
           aria-hidden="true"
-        ></span>{" "}
-        Loading . . .{" "}
+        >
+          {" "}
+        </span>
+        <span
+          className="Loading-spinner spinner-grow spinner-grow-lg"
+          role="status"
+          aria-hidden="true"
+        >
+          {" "}
+        </span>
+
+        <span
+          className="Loading-spinner spinner-grow spinner-grow-lg"
+          role="status"
+          aria-hidden="true"
+        >
+          {" "}
+        </span>
       </p>
     </div>
   );
