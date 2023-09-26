@@ -4,7 +4,6 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import JoblyApi from "./api/api";
 import { decodeToken } from "react-jwt";
 import UserContext from "./auth/UserContext";
-import Loading from "./common/Loading";
 import Navigation from "./navigation_routes/Navigation";
 import Routes from "./navigation_routes/Routes";
 
@@ -22,7 +21,6 @@ import Routes from "./navigation_routes/Routes";
  *   in JobCard component.
  */
 function App() {
-  const [dataIsLoading, setDataIsLoading] = useState(true);
   const [token, setToken] = useLocalStorage("user_token");
   const [currUser, setCurrUser] = useState(null);
   const [applicationIds, setApplicationIds] = useState(new Set([]));
@@ -57,9 +55,7 @@ function App() {
             setCurrUser(null);
           }
         }
-        setDataIsLoading(false);
       }
-      setDataIsLoading(true);
       getCurrUser();
     },
     [token]
@@ -108,11 +104,6 @@ function App() {
   async function logout() {
     setCurrUser(null);
     setToken(null);
-  }
-
-  // Show loading component if data is still loading.
-  if (dataIsLoading) {
-    return <Loading />;
   }
 
   return (
