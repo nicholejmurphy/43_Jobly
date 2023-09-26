@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import UserContext from "../auth/UserContext";
 import JobCardList from "../jobs/JobCardList";
-import Loading from "../common/Loading";
 import JoblyApi from "../api/api";
 
 /** Shows a list of all jobs for a user has applied for.
@@ -22,9 +21,9 @@ function Applications() {
       setJobs(res);
     }
     getJobsOnMount();
-  }, []);
+  }, [applicationIds]);
 
-  if (!jobs) return;
+  if (!jobs) return <div></div>;
 
   return (
     <div className="Applications">

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import JoblyApi from "../api/api";
-import Loading from "../common/Loading";
 import SearchForm from "../common/SearchForm";
 import JobCardList from "./JobCardList";
 
@@ -25,7 +24,7 @@ function JobList() {
     setJobs(jobsRes);
   }
 
-  if (!jobs) return;
+  if (!jobs) return <div></div>;
 
   return (
     <div className="JobList">
