@@ -27,7 +27,7 @@ function SearchForm({ search }) {
   }
 
   return (
-    <div className="SearchForm mb-4 mt-4 ml-3 vw-100">
+    <div className="SearchForm mb-4 mt-4 ml-3 vw-75">
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col>
@@ -36,7 +36,7 @@ function SearchForm({ search }) {
               id="search"
               name="search"
               type="text"
-              placeholder="Enter search term..."
+              placeholder="Search"
               value={searchTerm}
               onChange={handleChange}
             />

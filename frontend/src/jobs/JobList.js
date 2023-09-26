@@ -29,7 +29,7 @@ function JobList() {
   return (
     <div className="JobList container rounded shadow">
       <div className="bg-dark p-3 m-3 rounded shadow">
-        <h2 className="text-light display-4">Job Listings</h2>
+        <h2 className="text-light h1">Job Listings</h2>
       </div>
       <SearchForm search={search} />
 

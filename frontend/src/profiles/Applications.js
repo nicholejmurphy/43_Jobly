@@ -28,7 +28,7 @@ function Applications() {
   return (
     <div className="Applications  container rounded shadow">
       <div className="bg-dark p-3 m-3 rounded shadow">
-        <h2 className="text-light display-4">Your active job applications</h2>
+        <h2 className="text-light h1">Your applications</h2>
       </div>
       <JobCardList jobs={jobs} />
     </div>
